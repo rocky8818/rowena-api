@@ -10,8 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.12.2",
     "@astrojs/check": "^0.8.3",
+    "@astrojs/node": "^8.3.2",
+    "astro": "^4.12.2",
+    "qrcode": "^1.5.3",
+    "qrcode-terminal": "^0.12.0",
     "typescript": "^5.5.4"
   }
 }
