@@ -6,9 +6,11 @@ import qrcode from 'qrcode';
 
 const { user } = Astro.locals;
 if (user == null) {
-  return Astro.redirect("/admin/signin");
-} else {
+  return Astro.redirect("/admin/rowena");
+} else if(user.id == 'rg0711'){
   console.log(user);
+} else{
+    return Astro.redirect("/admin/rowena");
 }
 
 const qrUsers = await db.select().from(User);

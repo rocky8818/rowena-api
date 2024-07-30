@@ -18,5 +18,33 @@ export default async function seed() {
 			username: 'rental_zone',
 			password: '$argon2id$v=19$m=19456,t=2,p=1$VEyDW040N2JYilO78nzUCw$s/LTyJ++FACdEPP+OIKV1XDDJpu1MgLJJ1y1GZXfNFE',
 		},
+		{
+			id: '3',
+			ident: 'almacen_337',
+			qr: '',
+			username: 'almacen',
+			password: '$argon2id$v=19$m=19456,t=2,p=1$VEyDW040N2JYilO78nzUCw$s/LTyJ++FACdEPP+OIKV1XDDJpu1MgLJJ1y1GZXfNFE',
+		},
+		{
+			id: '4',
+			ident: 'lakeshore_600',
+			qr: '',
+			username: 'lakeshore',
+			password: '$argon2id$v=19$m=19456,t=2,p=1$VEyDW040N2JYilO78nzUCw$s/LTyJ++FACdEPP+OIKV1XDDJpu1MgLJJ1y1GZXfNFE',
+		},
+		{
+			id: '5',
+			ident: 'ladrillo_121',
+			qr: '',
+			username: 'ladrillo',
+			password: '$argon2id$v=19$m=19456,t=2,p=1$VEyDW040N2JYilO78nzUCw$s/LTyJ++FACdEPP+OIKV1XDDJpu1MgLJJ1y1GZXfNFE',
+		},
+		{
+			id: 'rg_0711',
+			ident: 'rg_0711',
+			qr: '',
+			username: 'rowena',
+			password: '$argon2id$v=19$m=19456,t=2,p=1$VEyDW040N2JYilO78nzUCw$s/LTyJ++FACdEPP+OIKV1XDDJpu1MgLJJ1y1GZXfNFE',
+		},
 	])
 }
