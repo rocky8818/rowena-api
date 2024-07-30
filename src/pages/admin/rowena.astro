@@ -16,7 +16,7 @@ console.log(qrUser)
 let qrImageUrl = '';
 qrImageUrl = qrUser[0].qr == '' ? null : await qrcode.toDataURL(qrUser[0].qr);
 ---
-<MainLayout>
+<MainLayout w_header>
 
   <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto my-20">
     <h1 class="text-2xl font-bold mb-4">{qrUser[0].username}</h1>
