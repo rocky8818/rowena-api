@@ -1,0 +1,37 @@
+---
+import QrCard from "@/adminComponents/QrCard.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { db, User } from "astro:db";
+import qrcode from 'qrcode';
+
+const { user } = Astro.locals;
+if (user == null) {
+  return Astro.redirect("/admin/rowena");
+} else if(user.id == 'rg0711'){
+  console.log(user);
+} else{
+    return Astro.redirect("/admin/rowena");
+}
+
+const qrUsers = await db.select().from(User);
+
+// Chequeo adicional para asegurar valores válidos
+const usersWithQR = await Promise.all(qrUsers.map(async (oneUser) => {
+  if (oneUser.qr && oneUser.qr.trim() !== '') {
+    const qrCode = await qrcode.toDataURL(oneUser.qr);
+    return { ...oneUser, qrCode };
+  } else {
+    console.error(`No input text for oneUser ${oneUser.id}`);
+    return { ...oneUser, qrCode: null };
+  }
+}));
+
+---
+
+<MainLayout w_header>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-52 gap-y-16 mt-10 mx-40">
+    {usersWithQR.map(user => (
+      <QrCard user={user} />
+    ))}
+  </div>
+</MainLayout>
