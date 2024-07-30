@@ -4,8 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rowena Bots</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
   <body style="background-color: rgb(236, 243, 248);">
-    <slot />
+    <header class="bg-[#9714FB] text-white">
+      <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold">
+          Rowena Bots
+        </div>
+        <div>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="hover:underline">Home</a></li>
+            <li><a href="#" class="hover:underline">Features</a></li>
+            <li><a href="#" class="hover:underline">Pricing</a></li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

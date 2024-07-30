@@ -32,9 +32,9 @@ export async function POST(context: APIContext): Promise<Response> {
     {
       id: userId,
       ident: username,
+      qr: '',
       username,
       password: hashedPassword,
-      qr: '',
     },
   ]);
 
@@ -46,5 +46,5 @@ export async function POST(context: APIContext): Promise<Response> {
     sessionCookie.value,
     sessionCookie.attributes
   );
-  return context.redirect("/admin/allreports");
+  return context.redirect("/admin/rowena");
 }
