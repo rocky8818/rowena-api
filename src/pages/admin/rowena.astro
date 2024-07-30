@@ -1,35 +1,30 @@
 ---
-import QrCard from "@/adminComponents/QrCard.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import { db, User } from "astro:db";
+import { db, like, User } from "astro:db";
 import qrcode from 'qrcode';
+import MainLayout from '../../layouts/MainLayout.astro'
 
-const { user } = Astro.locals;
-if (user == null) {
+const { user, session } = Astro.locals;
+if (session == null) {
   return Astro.redirect("/admin/signin");
 } else {
-  console.log(user);
+  console.log( session);
 }
 
-const qrUsers = await db.select().from(User);
+const qrUser = await db.select().from(User).where(like(User.id, session.userId));
+console.log(qrUser)
 
-// Chequeo adicional para asegurar valores válidos
-const usersWithQR = await Promise.all(qrUsers.map(async (oneUser) => {
-  if (oneUser.qr && oneUser.qr.trim() !== '') {
-    const qrCode = await qrcode.toDataURL(oneUser.qr);
-    return { ...oneUser, qrCode };
-  } else {
-    console.error(`No input text for oneUser ${oneUser.id}`);
-    return { ...oneUser, qrCode: null };
-  }
-}));
-
+let qrImageUrl = '';
+qrImageUrl = qrUser[0].qr == '' ? null : await qrcode.toDataURL(qrUser[0].qr);
 ---
-
 <MainLayout w_header>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-52 gap-y-16 mt-10 mx-40">
-    {usersWithQR.map(user => (
-      <QrCard user={user} />
-    ))}
-  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto my-20">
+    <h1 class="text-2xl font-bold mb-4">{qrUser[0].username}</h1>
+    <p class="text-gray-700 mb-6">¡Bienvenido! Aquí puedes escanear el código QR para conectar tu WhatsApp al bot.</p>
+    {qrImageUrl ? (
+      <img src={qrImageUrl} alt="QR Code" class="mx-auto w-1/2 h-1/2" />
+    ) : (
+      <p class="text-red-500">No QR code available</p>
+    )}
+</div>
 </MainLayout>
