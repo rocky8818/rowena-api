@@ -5,7 +5,6 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // Obtener los datos del cuerpo del POST
     const data = await request.json();
-    console.log(data);
     const user2edit = data.ident;
     const newQr = data.qr;
 
